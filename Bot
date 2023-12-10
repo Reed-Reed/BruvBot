@@ -1,0 +1,39 @@
+import discord
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+movie_list = []
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'{client.user} Test')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:   # This ensures the bot doesn't respond to itself
+        return
+
+
+    if message.content.startswith('$addmovie'):
+        movie = message.content[10:]
+        movie_list_file = open('movie_list.txt', 'a')
+        movie_list_file.write(movie + ", ")
+        movie_list_file.close()
+
+        await message.channel.send('Added to list')
+
+    if message.content.startswith('$deletemovie'): #FIXME doesn't work yet, need to pop an integer not a string
+
+
+        await message.channel.send('Deleted from list')
+
+    if message.content.startswith('$movielist'):
+        movie_list_file = open('movie_list.txt', 'r')
+        movie_list = movie_list_file.readlines()
+
+        await message.channel.send(movie_list)
+
+client.run('MTE4MjM4NjE2ODgzMTE2NDUxNw.GO7pnx.qIe2MeRRbonRNqFB_1uBKvcYw41CQcd5mVKhlk')
