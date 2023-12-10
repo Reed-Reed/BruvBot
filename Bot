@@ -33,6 +33,7 @@ async def on_message(message):
     if message.content.startswith('$movielist'):
         movie_list_file = open('movie_list.txt', 'r')
         movie_list = movie_list_file.readlines()
+        movie_list_file.close()
 
         await message.channel.send(movie_list)
 
