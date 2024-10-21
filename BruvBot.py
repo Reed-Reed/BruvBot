@@ -6,7 +6,7 @@ This program joins a discord bot to the bruv village discord server. It uses asy
 respond to messages and track data.
 
 Current features:
-    - Move list: tracks a list of movies to watch in the discord chat together
+    - Movie list: tracks a list of movies to watch in the discord chat together
 """
 
 import discord
